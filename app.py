@@ -434,7 +434,7 @@ def main_dashboard():
                   ad_set_data = data[data['Ad_Set'] == current_Ad_Set]
                     
             data = ad_set_data
-                    
+            st.write(data)       
             selected_columns = ['Ad_Set', 'Ad_Name', 'Impressions', 'Clicks','Cost', 'Leads']
             filtered_data = data[selected_columns]
           
