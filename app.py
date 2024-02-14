@@ -170,7 +170,7 @@ def process_ad_set_data(data, ad_set, past_test_data):
       'Impressions__Facebook_Ads' : 'Impressions',
       'Link_Clicks__Facebook_Ads' : 'Clicks',
       'Amount_Spent__Facebook_Ads' : 'Cost',
-      'Lead_Submit_SunPower__Facebook_Ads' : 'Leads',
+      'Lead__Facebook_Ads' : 'Leads',
       'Ad_Effective_Status__Facebook_Ads' : 'Ad_Status',
       'Ad_Preview_Shareable_Link__Facebook_Ads' : 'Ad_Link'
     })
@@ -376,7 +376,7 @@ def main_dashboard():
       'Impressions__Facebook_Ads' : 'Impressions',
       'Link_Clicks__Facebook_Ads' : 'Clicks',
       'Amount_Spent__Facebook_Ads' : 'Cost',
-      'Lead_Submit_SunPower__Facebook_Ads' : 'Leads',
+      'Lead__Facebook_Ads' : 'Leads',
       'Ad_Effective_Status__Facebook_Ads' : 'Ad_Status',
       'Ad_Preview_Shareable_Link__Facebook_Ads' : 'Ad_Link'
   })
