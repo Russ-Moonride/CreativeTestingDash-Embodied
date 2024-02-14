@@ -170,7 +170,7 @@ def process_ad_set_data(data, ad_set, past_test_data):
       'Impressions__Facebook_Ads' : 'Impressions',
       'Link_Clicks__Facebook_Ads' : 'Clicks',
       'Amount_Spent__Facebook_Ads' : 'Cost',
-      'Lead__Facebook_Ads' : 'Leads',
+      'Leads__Facebook_Ads' : 'Leads',
       'Ad_Effective_Status__Facebook_Ads' : 'Ad_Status',
       'Ad_Preview_Shareable_Link__Facebook_Ads' : 'Ad_Link'
     })
