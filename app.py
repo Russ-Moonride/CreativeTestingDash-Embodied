@@ -285,7 +285,7 @@ def update_current_tests(new_ad_set_name, uploaded_files, full_data, bucket_name
     
     # Upload each file to GCS and update the ad set table
     for i, file in enumerate(uploaded_files):
-        destination_blob_name = f"{new_ad_set_name}/{ad_names[i]}.jpg"  # Customize as needed
+        destination_blob_name = f"{new_ad_set_name}/{ad_names[i]}"  # Customize as needed
         upload_to_gcs(bucket_name, file, destination_blob_name)
     
     update_ad_set_table(new_ad_set_name)  # Update the ad set table after successful uploads
