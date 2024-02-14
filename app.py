@@ -21,7 +21,7 @@ client = bigquery.Client(credentials=credentials)
 
 #### Information to be changed when switching accounts ###
 Account = "Embodied"
-bucket_name = "creativetesting_images_literati" 
+bucket_name = "creativetesting_images_embodied" 
 main_table_id = "embodied-397017.embodied_segments.ad_level_data"
 creativetesting_table_id = "embodied-397017.embodied_streamlitdata.CreativeTestingStorage"
 correct_hashed_password = "CFEmbodiedAdTest4305$"
@@ -434,7 +434,7 @@ def main_dashboard():
                   ad_set_data = data[data['Ad_Set'] == current_Ad_Set]
                     
             data = ad_set_data
-            st.write(data)       
+   
             selected_columns = ['Ad_Set', 'Ad_Name', 'Impressions', 'Clicks','Cost', 'Leads']
             filtered_data = data[selected_columns]
           
