@@ -102,14 +102,14 @@ def get_campaign_value(ad_set, creative_storage_data):
 def update_ad_set_table(new_ad_set_name, campaign_name=None):
     # Query to find the current Ad-Set and Campaign
     query = """
-    SELECT Ad_Set, Campaign FROM `{creativetesting_table_id}` WHERE Type = 'Current'
+    SELECT Ad_Set, Campaign FROM `embodied-397017.embodied_streamlitdata.CreativeTestingStorage` WHERE Type = 'Current'
     """
     current_ad_set_campaign = pandas.read_gbq(query, credentials=credentials)
 
     # If current Ad-Set exists, update it to 'Past'
     if not current_ad_set_campaign.empty:
         update_query = """
-        UPDATE `{creativetesting_table_id}`
+        UPDATE `embodied-397017.embodied_streamlitdata.CreativeTestingStorage`
         SET Type = 'Past'
         WHERE Ad_Set = @current_ad_set 
         """
@@ -123,7 +123,7 @@ def update_ad_set_table(new_ad_set_name, campaign_name=None):
 
     # Insert the new Ad-Set with Type 'Current'
     insert_query = """
-    INSERT INTO `{creativetesting_table_id}` (Ad_Set, Campaign, Type) VALUES (@new_ad_set, @campaign, 'Current')
+    INSERT INTO `embodied-397017.embodied_streamlitdata.CreativeTestingStorage` (Ad_Set, Campaign, Type) VALUES (@new_ad_set, @campaign, 'Current')
     """
     job_config = bigquery.QueryJobConfig(
         query_parameters=[
@@ -158,28 +158,6 @@ def upload_to_gcs(bucket_name, source_file, destination_blob_name):
     # Create a new blob and upload the file's content.
     blob = bucket.blob(destination_blob_name)
     blob.upload_from_file(source_file, content_type='image/jpeg')  # Set content_type as per your file type
-
-
-def delete_ad_set(ad_set_value_to_delete, full_data):
-        # SQL statement for deletion
-        if ad_set_value_to_delete in full_data['Ad_Set_Name__Facebook_Ads'].values:
-                  delete_query = """
-                  DELETE FROM `{creativetesting_table_id}`
-                  WHERE Ad_Set = @ad_set_value
-                  AND Type = 'Past'
-                  """
-                  # Configure query parameters
-                  job_config = bigquery.QueryJobConfig(
-                      query_parameters=[
-                          bigquery.ScalarQueryParameter("ad_set_value", "STRING", ad_set_value_to_delete)
-                      ]
-                  )
-                  # Execute the query
-                  client.query(delete_query, job_config=job_config).result()
-                  st.experimental_rerun()
-        else:
-                  st.error("Ad_Set does not exist")
-
 
 ### Code for past tests function ###
 def process_ad_set_data(data, ad_set, past_test_data):
@@ -369,7 +347,7 @@ def main_dashboard():
       client = bigquery.Client(credentials=credentials)
       # Modify the query
       query = f"""
-      SELECT * FROM `{creativetesting_table_id}` 
+      SELECT * FROM `embodied-397017.embodied_streamlitdata.CreativeTestingStorage` 
       WHERE Type = 'Current'"""
       st.session_state.current_test_data = pandas.read_gbq(query, credentials=credentials)
 
@@ -382,7 +360,7 @@ def main_dashboard():
       client = bigquery.Client(credentials=credentials)
       # Modify the query
       query = f"""
-      SELECT * FROM `{creativetesting_table_id}` 
+      SELECT * FROM `embodied-397017.embodied_streamlitdata.CreativeTestingStorage` 
       WHERE Type = 'Past'"""
       st.session_state.past_test_data = pandas.read_gbq(query, credentials=credentials)
 
